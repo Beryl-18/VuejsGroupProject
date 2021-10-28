@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>Pet Depot</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+        <style>
+            img{
+                /* float: left; */
+                width: 90%;
+                height: 30%;
+                padding-top: 2%;
+
+            }
+            .row{
+                /* float:left; */
+                padding-left: 10px;
+                display: inline-block;
+            }
+            .column{
+                border: 5px black;
+            }
+        </style>
+
+    </head>
+    <body >
+        <header>
+            <h1  style="text-align: center;font-weight: bold;"> AFTER SCHOOL CLUB</h1>
+        </header>
+        
+        <div id="app" style="border-style: solid; width: 40%; border-radius: 12px; border-color: lightblue;" >
+            <div class="column" >
+                <div class="row">
+                <figure>
+                    <img v-bind:src="lesson.Image">
+                </figure>
+                </div>
+                <div class="row" >
+                    <h2 v-text="lesson.subject" ></h2>
+                    <h3 v-text="lesson.location"></h3>
+                    <p>Price: {{lesson.price}}</p>
+                    <p>Number of Spaces: {{lesson.numberOfSpaces}}</p>
+                    <button v-on:click = "addToCart">Add to Cart</button>
+                </div>
+            </div>
+            
+        </div>
+            
+         
+        
+    </body>
+    <script>
+        var webstore = new Vue({
+            el:"#app",
+            data:{
+               sitename:"After School Club",
+               lesson: {
+                id:1001,
+                subject:'MATH',
+                location:'London',
+                price:"100",
+                Image:'mathLogo.jpeg',
+                numberOfSpaces: 5
+                },
+                cart: []
+            },
+            methods:{
+                addToCart(){
+                    this.cart.push(this.lesson.id);
+                    if(this.lesson.numberOfSpaces > 0){
+                    this.lesson.numberOfSpaces = this.lesson.numberOfSpaces - 1;
+                    }
+                }
+            }
+        
+        })
+
+    </script>
+</html>
