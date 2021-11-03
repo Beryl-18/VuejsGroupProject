@@ -3,19 +3,23 @@
         <title>After School Club</title>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
         <style>
+              /* Image Styling */
             img{
                 width: 90%;
                 height: 30%;
                 padding-top: 2%;
 
             }
+             /* Row styling for each lesson */
             .row{
                 padding-left: 10px;
                 display: inline-block;
             }
+              /* Column styling for each lesson */
             .column{
                 border: 5px black;
             }
+              /* Add to cart button Styling */
             .button{
                 background-color: #4472C4;
                 color: white;
@@ -27,56 +31,66 @@
 
     </head>
     <body >
+         <!-- Page Title -->
         <header>
             <h1  style="text-align: center;font-weight: bold;"> AFTER SCHOOL CLUB</h1>
         </header>
         
-        <div id="app" style="border-style: solid; width: 40%; border-radius: 12px; border-color: lightblue;" >
+         <!-- Main div element accesed from Vue -->
+         <div id="app" style="border-style: solid; width: 40%; border-radius: 12px; border-color: lightblue;" >
+            <!-- Lesson Column -->
             <div class="column" >
+                <!-- Lesson Row -->
                 <div class="row">
+                    <!-- Lesson Image -->
                 <figure>
                     <img v-bind:src="lesson.Image">
                 </figure>
                 </div>
                 <div class="row" >
+                    <!-- Lesson name from vue object -->
                     <h2 v-text="lesson.subject" ></h2>
+                    <!-- Lesson location from vue object -->
                     <h3 v-text="lesson.location"></h3>
-                    <p>Price: {{lesson.price}} £</p>
+                    <!-- Lesson price from vue object -->
+                    <p>Price: {{lesson.price}}</p>
+                    <!-- Lesson slots available from vue object -->
                     <p>Number of Spaces: {{lesson.numberOfSpaces}}</p>
-                    <button class="button" v-on:click = "addToCart">Add to Cart</button>
+                    <!-- Add to cart button calling function  addToCart-->
+                    <button v-on:click = "addToCart">Add to Cart</button>
                 </div>
-            </div>
-            
-        </div>
-            
-         
+            </div> <!-- Column end -->
+        </div> <!-- Main element end -->        
         
     </body>
     <script>
+        // Creating new Vue object "webstore"
         var webstore = new Vue({
+            // Accessing div element
             el:"#app",
+            // Creating new data 
             data:{
                sitename:"After School Club",
                lesson: {
-                id:1001,
-                subject:'MATH',
-                location:'London',
-                price:"100",
-                Image:'mathLogo.jpeg',
-                numberOfSpaces: 5
+                id:1001, //Lesson Id
+                subject:'MATH', //Lesson Name
+                location:'London', //Lesson Location
+                price:"100", //Lesson Price
+                Image:'mathLogo.jpeg', //Lesson Image
+                numberOfSpaces: 5 // Slots available
                 },
-                cart: []
+                cart: [] //New cart array to add items into
             },
+            // Vue Functions
             methods:{
+                //addToCart function called when button clicked. If slots available is not 0 item can be added to cart
                 addToCart(){
-                    this.cart.push(this.lesson.id);
+                    this.cart.push(this.lesson.id); //Push lesson id to cart array
                     if(this.lesson.numberOfSpaces > 0){
-                    this.lesson.numberOfSpaces = this.lesson.numberOfSpaces - 1;
+                    this.lesson.numberOfSpaces = this.lesson.numberOfSpaces - 1; //Reduce slots available once added
                     }
                 }
             }
-        
-        })
-
+        });
     </script>
 </html>
