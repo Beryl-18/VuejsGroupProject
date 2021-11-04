@@ -32,6 +32,10 @@
                 font-size: large;
                 padding: 5%;
             }
+            /*Hover effect on the button*/
+            .button:hover{
+                cursor: pointer;
+            }
             /* App div style */
             #app{
                 border-style: solid;
@@ -66,7 +70,7 @@
                     <!-- Lesson location from vue object -->
                     <h3 v-text="lesson.location"></h3>
                     <!-- Lesson price from vue object -->
-                    <p>Price: {{lesson.price}}</p>
+                    <p>Price: {{lesson.price}} £</p>
                     <!-- Lesson slots available from vue object -->
                     <p>Number of Spaces: {{lesson.numberOfSpaces}}</p>
                     <!-- Add to cart button calling function  addToCart-->
